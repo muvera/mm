@@ -1,0 +1,1 @@
+/vagrant/discoslindallc/app/views/videos/index.blade.php

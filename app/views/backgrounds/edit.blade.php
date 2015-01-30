@@ -1,0 +1,1 @@
+/var/www/monitormusical/app/views/backgrounds/edit.blade.php

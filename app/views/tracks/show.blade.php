@@ -1,0 +1,1 @@
+/Users/GL/code/websites/discoslindallc/app/views/tracks/show.blade.php
