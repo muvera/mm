@@ -113,13 +113,14 @@ class TracksController extends \BaseController {
 
 			public function upload()
 	{
+
+		
 		$user = Auth::user();
 		// Inputs from form
 		$track_id = 	Input::get('track_id');
 		$image = 		Input::file('file');
 		$product_id = 	Input::get('product_id');
 		$track_name = 	Input::get('track_name');
-		
 
 		// If track folder does not exists make track folder
 		$folder = public_path('uploads/company/'.$user->id.'/'.$product_id.'/'.$track_id);
@@ -128,11 +129,11 @@ class TracksController extends \BaseController {
 			mkdir($folder);
 		}
 
-
 		// remove spaces
 		$final = preg_replace('#[ -]+#', '-', $track_name);
 		$new_name = $final.'.mp3';
 		$upload = $image->getClientOriginalName();
+		
 
 
 		// move the track the the folder
@@ -156,7 +157,10 @@ class TracksController extends \BaseController {
 		// Path for company background and album cover
 		$path_basic_images = public_path('uploads/company/'.$user->id.'/' . $product_id . '/');
 
+		//dd($path_basic_images);
+		Audio::make($path, $track->file, $track->file);
 		// Process the Video Images
+
 		VideoImages::TrackName($track_name, $path);
 		VideoImages::ArtistName($artist_name, $path);
 		VideoImages::AlbumCover($path_basic_images, $album_cover, $path);
@@ -164,11 +168,16 @@ class TracksController extends \BaseController {
 		
 		// Slide_show Name
 		$slide_show = 'slide_show_'.$final.'_.mp4';
-		$sound_file = $new_name;
+		$sound_file = 'preview-'.$new_name;
 		$video_name = $final;
 
-		MakeVideo::SlideShow($path_basic_images, $slide_show);
-		MakeVideo::MergeSound($path, $slide_show, $sound_file, $video_name);
+		//MakeVideo::SlideShow($path_basic_images, $slide_show);
+		//MakeVideo::MergeSound($path, $slide_show, $sound_file, $video_name);
+		//slide show
+		shell_exec('avconv -framerate 1/10 -i '.$path. 'img%03d.png '.$path.$slide_show);
+		
+		//shell_exec('avconv -i uploads/out.mp4 -i uploads/chalino.mp3 -c:a copy uploads/finish.mp4');
+		shell_exec('avconv -i '.$path.$slide_show.' -i '.$path.$sound_file.' -c:a copy '.$path.$video_name.'.mp4');
 
 
 

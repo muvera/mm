@@ -16,6 +16,8 @@ class CreateProfilesTable extends Migration {
 		{
 			$table->increments('id');
 			$table->string('business');
+			$table->string('name');
+			$table->string('last');
 			$table->string('contact');
 			$table->string('address');
 			$table->string('address2');

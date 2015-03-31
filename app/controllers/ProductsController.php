@@ -112,6 +112,11 @@ class ProductsController extends \BaseController {
 	public function show($id)
 	{
 		//
+		if(!Session::get('username')){
+			return Redirect::to('/');
+		}
+		$username = Session::get('username');
+		$user = User::where('username', '=', $username)->first();
 		$product = Product::findOrFail($id);
 		Session::put('album_id', $id);
 
@@ -122,6 +127,7 @@ class ProductsController extends \BaseController {
 		
 	
 				return View::make('products.show')
+					->with('user', $user)
 					->with('product', $product)
 					->with('tracks', $tracks)
 					->with('services', $services)

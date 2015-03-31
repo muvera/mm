@@ -4,35 +4,30 @@
 <p>{{$category->description}}</p>
 
 
-<table class="table table-striped">
-      <thead>
-        <tr>
-          <th>Id</th>
-          <th>Cover</th>
-          <th>Catalog#</th>
-          <th>Album Name</th>
-          <th>Alias</th>
-          <th>Barcode</th>
-        </tr>
-      </thead>
-      <tbody>
 
+<div class="row">
 @foreach($products as $product)
-
-        <tr>
-          <td>{{$product->id}}</td>
-          <td><img src="/uploads/{{$product->img}}" class="thumnail img-responsive"></td>
-          <td>{{$product->catalog}}</td>
-          <td>{{$product->name}}</td>
-          <td>{{$product->alias}}</td>
-		  <td>{{$product->barcode}}</td>
-        </tr>
+<div class="col-md-3">
+      <div class="well">
+        <center>
+          <a href="{{route('products.show', $product->id)}}">
+         <img src="/uploads/company/{{$user->id}}/{{$product->id}}/{{$product->img}}" class="thumbnail img-responsive" width="200">
+        </a>
+        </center>
+        {{$product->catalog}}
+        {{$product->name}}
+        {{$product->alias}}
+        {{$product->barcode}}
+      </div>
+      </div>
 @endforeach
+</div>
 
-     </tbody>
-    </table>
-
-<a href="{{route('products.create')}}" type="button" class="btn btn-primary">New Album</a>
+@if(Auth::user())
+      @if(Auth::user()->roles()->first()->name == 'member')
+        <a href="{{route('products.create')}}" type="button" class="btn btn-primary">New Album</a>
+      @endif
+@endif
 @stop
 
 

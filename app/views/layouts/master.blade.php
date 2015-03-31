@@ -27,12 +27,15 @@
 
    
 <div class="container">
-	@include('layouts.nav')
+	@if(Auth::user())
+      @if(Auth::user()->roles()->first()->name == 'member')
+	     @include('layouts.nav')
+      @endif
+	@endif
 
 @yield('content')
 </div>
 
-</div></span>
 
 <!-- JavaScript And BootStrap -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>

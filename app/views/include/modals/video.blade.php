@@ -22,9 +22,9 @@
 
 <video id="example_video_1" class="video-js vjs-default-skin"
   controls preload="auto" width="540" height="264"
-  poster="{{asset('/uploads/company/'.Auth::user()->id.'/'. $product->id . '/' . $track->id)}}/img002.png"
+  poster="{{asset('/uploads/company/'.$user->id.'/'. $product->id . '/' . $track->id)}}/img002.png"
   data-setup='{"example_option":true}'>
- <source src="{{asset('/uploads/company/'.Auth::user()->id.'/'. $product->id)}}/{{$track->id}}/{{$final}}.mp4" type='video/mp4' />
+ <source src="{{asset('/uploads/company/'.$user->id.'/'. $product->id)}}/{{$track->id}}/{{$final}}.mp4" type='video/mp4' />
  <p class="vjs-no-js">To view this video please enable JavaScript, and consider upgrading to a web browser that <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a></p>
 </video>
 

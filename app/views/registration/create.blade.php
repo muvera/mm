@@ -8,12 +8,13 @@
       <div class="starter-template">
         <h1>Register</h1>
 {{Form::open(['route'=>'registration.store'])}}
+{{Form::hidden('role', 'customer')}}
 		<!-- username -->
-<div class="form-group">
+<!-- <div class="form-group">
 		{{ Form::label('username', 'User Name:') }}
 		{{ Form::text('username', null, ['class'=>'form-control', 'required'=>'required']) }}
 		{{ $errors->first('username', '<span class="error">:message</span>') }}
-</div>
+</div> -->
 
 	<!-- email Field-->
 	<div class="form-group">

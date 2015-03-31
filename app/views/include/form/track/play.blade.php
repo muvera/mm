@@ -1,4 +1,4 @@
 <audio controls>
-  <source src="{{asset('uploads/company/'.Auth::user()->id.'/'. $product->id . '/' . $track->id . '/' . $track->file)}}" type="audio/mpeg">
+  <source src="{{asset('uploads/company/'.$user->id.'/'. $product->id . '/' . $track->id . '/preview-' . $track->file)}}" type="audio/mpeg">
 Your browser does not support the audio element.
 </audio>

@@ -1,20 +1,23 @@
 <?php
 
-// Composer: "fzaninotto/faker": "v1.3.0"
-use Faker\Factory as Faker;
+
 
 class RolesTableSeeder extends Seeder {
 
 	public function run()
 	{
-		$faker = Faker::create();
+		// Uncomment the below to wipe the table clean before populating
+		 DB::table('roles')->delete();
 
-		foreach(range(1, 10) as $index)
-		{
-			Role::create([
+		$items = array(
+['name'=>'admin'],
+['name'=>'member'],
+['name'=>'customer']
 
-			]);
-		}
+		);
+
+		// Uncomment the below to run the seeder
+		 DB::table('roles')->insert($items);
 	}
 
 }

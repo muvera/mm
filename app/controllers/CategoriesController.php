@@ -68,13 +68,20 @@ class CategoriesController extends \BaseController {
 	 */
 	public function show($id)
 	{
-		//
+
+
+		if(!Session::get('username')){
+		return Redirect::to('/');
+		}
+		$username = Session::get('username');
+		$user = User::where('username', '=', $username)->first();
 		$category = Category::findOrFail($id);
 		Session::put('cat_id', $id);
 		$products = Product::where('cat_id', '=', $id)->get();
 		
 				return View::make('categories.show')
 					->with('category',$category )
+					->with('user', $user)
 					->with('products',$products );
 	}
 

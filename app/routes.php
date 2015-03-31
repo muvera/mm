@@ -73,9 +73,18 @@ Route::post('trackupload', ['as'=>'trackupload', 'uses'=>'TracksController@uploa
 Route::resource('videos', 'VideosController');
 Route::post('videoupload', ['as'=>'videoupload', 'uses'=>'VideosController@upload'])->before('auth');
 
+#Cart Routes
+Route::get('cart', ['as'=>'cart', 'uses'=>'CartsController@index']);
+Route::post('add', ['as'=>'add', 'uses'=>'CartsController@add']);
+Route::get('remove', ['as'=>'remove', 'uses'=>'CartsController@remove']);
+Route::post('delete', ['as'=>'delete', 'uses'=>'CartsController@delete']);
+
+#Customers 
+Route::resource('customers', 'CustomersController');
 
 
 Route::resource('services', 'ServicesController');
+Route::resource('orders', 'OrdersController');
 Route::resource('profiles', 'ProfilesController');
 
 Route::resource('users', 'UsersController');
@@ -88,6 +97,8 @@ Route::post('/register', ['as'=>'registration.store', 'uses'=>'RegistrationContr
 # Background
 Route::resource('backgrounds', 'BackgroundsController');
 Route::post('backgroundupload', ['as'=>'backgroundupload', 'uses'=>'BackgroundsController@upload'])->before('auth');
+
+Route::get('/{profile}', 'WebsitesController@show');
 
 
 

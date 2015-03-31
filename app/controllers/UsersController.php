@@ -42,8 +42,27 @@ class UsersController extends \BaseController {
 				$user = new User;
 				$user->name = $input['name'];
 				$user->save();
-		
+
+		// Assing a "customer" role
+				$user->roles()->attach(3);
+
+
+		// Check for a store
+				if(Session::get('username')){
+					// get User Id
+					$customer = $user->id;
+					// get store id
+					$store = User::where('username', '=', Session::get('username'));
+					
+					// check for relation ship
+					Bucket::where('customer_id', '=',$customer)->get();
+
+					// assing store
+				}else{
+
+				}
 				return Redirect::to('/users');
+
 	}
 
 	/**

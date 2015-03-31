@@ -1,6 +1,7 @@
 <?php
 
 use core\Forms\RegistrationForm;
+use core\Forms\CustomerForm;
 
 
 class RegistrationController extends \BaseController {
@@ -11,9 +12,10 @@ class RegistrationController extends \BaseController {
 	 */
 	private $registrationForm;
 
-	function __construct(RegistrationForm $registrationForm)
+	function __construct(RegistrationForm $registrationForm,  CustomerForm $customerForm)
 {
     $this->registrationForm = $registrationForm;
+    $this->customerForm = $customerForm;
 }
 
 
@@ -53,6 +55,21 @@ class RegistrationController extends \BaseController {
 	{
 
 	
+		// // Get form data
+		// $input = Input::only('username', 'email', 'password', 'password_confirmation');
+		// // Validate the data
+		// $this->registrationForm->validate($input);
+		// // create the user
+		// $user = User::create($input);
+		// // assing member role
+		// $user->assignRole(1);
+		// // log in the user
+		// Auth::login($user);
+
+		$input = Input::get('role');
+
+		// Make Seller Record
+		if($input == 'seller'){
 		// Get form data
 		$input = Input::only('username', 'email', 'password', 'password_confirmation');
 		// Validate the data
@@ -60,9 +77,53 @@ class RegistrationController extends \BaseController {
 		// create the user
 		$user = User::create($input);
 		// assing member role
-		$user->assignRole(1);
+		$user->assignRole(2);
 		// log in the user
 		Auth::login($user);
+		}
+
+		// Make Customer Record
+		if($input == 'customer'){
+		// Get form data
+		$input = Input::only('email', 'password', 'password_confirmation');
+		// Validate the data
+		$this->customerForm->validate($input);
+		// create the user
+		$user = User::create($input);
+		// assing Customer role
+		$user->assignRole(3);
+		// log in the user
+		Auth::login($user);
+
+
+		//	Attach  new user to store
+
+		// Get the store id
+		$store = User::where('username', '=', Session::get('username'))->first();
+		$store_id = $store->id;
+
+		// create store customer
+		$email = Input::get('email');
+		$user_customer = new Customer;
+		$user_customer->store_id = $store_id;
+		$user_customer->customer_id = $user->id;
+		$user_customer->save();
+
+		// Attach customer
+		$username = Input::get('username');
+		// If customer has no store reference, Claim Customer with the first store
+		if(!$username)
+		{
+		$user = User::findOrFail(1);
+		$user->customers()->attach($user_customer->id);
+		}else{
+		// If customer has a store reference than attach it
+		$user = User::where('username', '=', $username)->first();
+		$user->customers()->attach($user_customer->id);
+		}
+
+		}
+
 
 
 			

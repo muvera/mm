@@ -3,6 +3,8 @@ class VideoImages {
 
 // Most arguments come from the TracksController
 
+
+
 static public function CopyLogo($path){
 
 		$pwd = public_path('uploads/');
@@ -92,7 +94,7 @@ static public function TrackName($track_name, $path)
 		$pwd = public_path('uploads/company/'.$user_id.'/'. $product_id);
 		
 
-		// copy this image to the tack folder
+		// copy this image to the track folder
 		$img = Image::make($pwd. '/' . 'img001.png');
 		$img->save($path . '/img001.png');
 		// Flaten the images

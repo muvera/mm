@@ -51,6 +51,8 @@ class ProfilesController extends \BaseController {
 		// create record
 		$profile = new Profile;
 		$profile->business = $input['business'];
+		$profile->name = $input['name'];
+		$profile->last = $input['last'];
 		$profile->contact = $input['contact'];
 		$profile->address = $input['address'];
 		$profile->address2 = $input['address2'];
@@ -63,7 +65,7 @@ class ProfilesController extends \BaseController {
 		// Link it to user
 		$user->profiles()->attach($profile->id);
 
-		return Redirect::to('/profiles');
+		return Redirect::back();
 		
 	}
 
