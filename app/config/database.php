@@ -56,8 +56,12 @@ return array(
 			'driver'    => 'mysql',
 			'host'      => 'localhost',
 			'database'  => 'monitormusical',
-			'username'  => 'root',
-			'password'  => 'root',
+			// local
+			// 'username'  => 'root',
+			// 'password'  => 'root',
+			// Remote
+			'username'  => 'forge',
+			'password'  => 'ZeKOy0NOqHlWYkhmnxXC',
 			'charset'   => 'utf8',
 			'collation' => 'utf8_unicode_ci',
 			'prefix'    => '',
