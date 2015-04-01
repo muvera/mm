@@ -1,5 +1,22 @@
+
+
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#register">
+  Crear Cuenta
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="register" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Nueva Cuenta</h4>
+      </div>
+      <div class="modal-body">
+
+
 <div class="well">
-   <h1>Register</h1>
 {{Form::open(['route'=>'registration.store'])}}
 {{Form::hidden('role', 'customer')}}
 		<!-- username -->
@@ -29,14 +46,19 @@
 			{{ Form::password('password_confirmation', ['class'=>'form-control', 'required'=>'required']) }}
 	</div>
 
-	<!-- Create Account Field -->
-	
-	<div class="form-group">
-			{{ Form::submit('Create Account', ['class'=>'btn btn-primary', 'required'=>'required'])}}
-	</div>
-	
-
-{{Form::close()}}
 
 </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+        <button type="submit" class="btn btn-primary">Crear Cuenta</button>
+        {{Form::close()}}
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal Ends -->
+
+
 

@@ -78,6 +78,7 @@ Route::get('cart', ['as'=>'cart', 'uses'=>'CartsController@index']);
 Route::post('add', ['as'=>'add', 'uses'=>'CartsController@add']);
 Route::get('remove', ['as'=>'remove', 'uses'=>'CartsController@remove']);
 Route::post('delete', ['as'=>'delete', 'uses'=>'CartsController@delete']);
+Route::get('/order_confirmation/{id}/{vefiry}', 'OrdersController@verify');
 
 #Customers 
 Route::resource('customers', 'CustomersController');

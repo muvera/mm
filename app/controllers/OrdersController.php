@@ -44,6 +44,8 @@ class OrdersController extends \BaseController {
 		// Create new Order
 		$order = new Order;
 		$order->store_id = $store->id;
+		// Vefify token for the order confirmation
+		$order->verify = rand();
 		$order->products = serialize(Session::get('products'));
 		$order->save();
 		
@@ -104,6 +106,21 @@ class OrdersController extends \BaseController {
 	public function destroy($id)
 	{
 		//
+	}
+	// VERIFY THE ORDER
+		public function verify($id, $verify)
+	{
+		//
+		$order = Order::where('id', '=', $id)->first();
+		if($order->verify == $verify){
+			$order->status = '1';
+			$order->save();
+		}else{
+			dd('this order is not valid or it has been deleted');
+		}
+
+		return Redirect::to('/orders');
+
 	}
 
 }

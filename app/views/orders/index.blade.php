@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('content')
-
+<h3>Mi Musica</h3>
 @foreach($orders as $key=>$order)
 <div class="well">
 @if(!$order->status == '1')
@@ -28,12 +28,7 @@
 		@endforeach
 	</div>
 	@endif
-	
 </div>
 @endforeach
 
-<div class="row">
-	<div class="col-md-6"></div>
-	<div class="col-md-6"><a href="/logout" class="btn btn-primary pull-right">Logout</a></div>
-</div>
 @stop

@@ -40,9 +40,11 @@ class SessionsController extends \BaseController {
 			'password'=> $input['password']
 			]);
 
-		if($attempt) return Redirect::intended('/');
+		if($attempt) 
 
-		dd('problem');
+			return Redirect::back();
+
+		dd('Problem');
 	}
 
 	/**

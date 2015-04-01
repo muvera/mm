@@ -174,10 +174,14 @@ class TracksController extends \BaseController {
 		//MakeVideo::SlideShow($path_basic_images, $slide_show);
 		//MakeVideo::MergeSound($path, $slide_show, $sound_file, $video_name);
 		//slide show
-		shell_exec('avconv -framerate 1/10 -i '.$path. 'img%03d.png '.$path.$slide_show);
+		
+		// yes | ffmpeg -framerate 1/10 -i img%03d.png slide_show.mp4 &
+		// avconv -i slide_show.mp4 -i preview-La-Cochicuina.mp3 -c:a copy finish.mp4
+		shell_exec('yes | ffmpeg -framerate 1/10 -i '.$path. 'img%03d.png '.$path.$slide_show);
 		
 		//shell_exec('avconv -i uploads/out.mp4 -i uploads/chalino.mp3 -c:a copy uploads/finish.mp4');
-		shell_exec('avconv -i '.$path.$slide_show.' -i '.$path.$sound_file.' -c:a copy '.$path.$video_name.'.mp4');
+		// avconv -i slide_show.mp4 -i preview-La-Cochicuina.mp3 -c:a copy finish.mp4
+		shell_exec('yes | ffmpeg -i '.$path.$slide_show.' -i '.$path.$sound_file.' -c:a copy '.$path.$video_name.'.mp4');
 
 
 

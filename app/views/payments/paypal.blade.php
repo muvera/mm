@@ -12,9 +12,10 @@
       <!--  <input type="hidden" name="handling_cart" value="1.99" /> -->
        <input type="hidden" name="currency_code" value="USD" />
        <input type="hidden" name="lc" value="US" />
-       <input type="hidden" name="return" value="http://monitormusical.com/order_confirmation/" />			
-       <input type="hidden" name="cbt" value="this is the return text" />
-       <input type="hidden" name="cancel_return" value="http://monitormusical.com" />
+        <input type="hidden" name="invoice" value="{{$order->id}}" />
+       <input type="hidden" name="return" value="http://monitormusical.com/order_confirmation/{{$order->id}}/{{$order->verify}}" />			
+       <input type="hidden" name="cbt" value="Download Now!, Descargar Musica Ahora!" />
+       <input type="hidden" name="cancel_return" value="http://monitormusical.com/orders" />
 <hr>
 
        <!-- foreach loop starts -->

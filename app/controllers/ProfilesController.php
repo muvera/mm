@@ -11,6 +11,8 @@ class ProfilesController extends \BaseController {
 	public function index()
 	{
 		//
+
+		
 		$user = Auth::user();
 		$profile = $user->profiles()->first();
 
@@ -30,7 +32,13 @@ class ProfilesController extends \BaseController {
 	public function create()
 	{
 		//
-		return View::make('profiles.create');
+		$user = Auth::user();
+		if($user->profiles()->first()){
+		return Redirect::to('/profiles/');
+		}else{
+		return View::make('profiles.create');	
+		}
+		
 	}
 
 	/**

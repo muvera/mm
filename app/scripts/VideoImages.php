@@ -91,9 +91,8 @@ static public function TrackName($track_name, $path)
 		// INSERT BOTTOM TITTLE
 		$track_name = preg_replace('#[ -]+#', '-', $track_name);
 		$artist_name = preg_replace('#[ -]+#', '-', $artist_name);
+		$artist_name = strtoupper($artist_name);
 		$pwd = public_path('uploads/company/'.$user_id.'/'. $product_id);
-		
-
 		// copy this image to the track folder
 		$img = Image::make($pwd. '/' . 'img001.png');
 		$img->save($path . '/img001.png');

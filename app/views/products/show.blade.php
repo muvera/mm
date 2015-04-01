@@ -1,120 +1,20 @@
 @extends('layouts.master')
 @section('content')
 
-
-@if(Session::get('products'))
-You have Items in your cart <a href="/cart">View Cart</a>
-@endif
-
-
-<div class="row">
-	<div class="col-md-3">
-		<h3>{{$product->name}}</h3>
-			<img src="{{asset('uploads/company/' .$user->id.'/'. $product->id . '/' . $product->img)}}" class="thumbnail img-responsive">
-		  <h5>{{$product->artist()->first()['name']}}</h5>
-    </div>
-		<div class="col-md-9">
-			<div class="well">
-
-
-<table class="table table-striped">
-      <thead>
-        <tr>
-          <th>Track</th>
-          <th>Name</th>
-          <th>Player</th>
-  <!-- Show the extra cells if user is looggedin -->
           @if(Auth::user())
+         <!--  ONLY MEMBERS -->
               @if(Auth::user()->roles()->first()->name == 'member')
-          <th>Upl</th>
-          <th>Service</th>
-          <th>Monitor</th>
+                @include('products.roles.show.member')
               @endif
+            <!--   ONLY CUSTOMERS -->
+               @if(Auth::user()->roles()->first()->name == 'customer')
+                @include('products.roles.show.customer')
+              @endif
+
           @else
-  <!-- END Show the extra cells if user is looggedin -->
-          <th>Buy</th>
+          	<!-- ONLY GUESTS -->
+                @include('products.roles.show.customer')
           @endif
-        </tr>
-      </thead>
-      <tbody>
-@foreach($tracks as $track)
-		<tr>
-          <th scope="row">{{$track->track_number}}</th>
-          <td>{{$track->name}}</td>
-          <td>
-  @if($track->file)
-  @include('include.form.track.play')
-  @endif
- 
-	
-          </td>
-
-
-<!-- IF user is loogged in show the extra cells and functions -->
-  @if(Auth::user())
-      @if(Auth::user()->roles()->first()->name == 'member')
-          <td>
-            <!-- View Video Icon -->
-
-  @include('include.form.file.create')
-
-  @include('include.modals.video')
-          </td>
-          <td>
-            <!--    If track has services, loop them -->
-   @if(count($track->service()->first()))
-           <!-- Loop services -->
-        @foreach($track->service()->get() as $service)
-            
-          @include('include.modals.service_index')
-      
-        @endforeach
-
-
-    
-   @else
-   No service listed
-   @endif
-          </td>
-
-          <td>
-            @include('include.form.services.create')
-          </td>
-
-  @else
-
-  <td>
-
-@include('payments.add_item')
-
-
-  </td>
-      @endif
-  @endif
-
-  <!-- END IF user is loogged in show the extra cells and functions -->
-        </tr>
-
-@endforeach
-
-      </tbody>
-    </table>
-    @if(Auth::user())
-        @if(Auth::user()->roles()->first()->name == 'member')
-@include('include.form.track.create')
-        @endif
-    @endif
-</div>
-		</div>
-</div>
-
-
-
-
-{{$product->description}}
-
-
-
 
 
 @stop

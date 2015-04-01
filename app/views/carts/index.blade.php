@@ -28,33 +28,8 @@
 @endforeach
 </div>
 
-<hr>
-<div class="row">
-	<div class="col-md-6"><button type="submit" class="btn btn-default btn-sm">Delete Cart</button></div>
-	<div class="col-md-6">
-		
-		@if(Auth::user())
-			
-			@if(!Auth::user()->profiles()->first())
-				@include('profiles.modals.add_profile')
-			@else
-				@include('payments.checkout')
-			@endif
-		@else
-			@include('registration.modals.customer_registration')
-		@endif
-
-	</div>
-</div>
-
-{{Form::open(['route'=>'delete'])}}
-
-{{Form::close()}}
 
   </div>
 </div>
-
-
-
 
 @stop

@@ -17,6 +17,7 @@ class CreateOrdersTable extends Migration {
 			$table->increments('id');
 			$table->integer('status');
 			$table->string('store_id');
+			$table->string('verify');
 			$table->text('products');
 			$table->string('b_address1');
 			$table->string('b_address2');
