@@ -4,7 +4,7 @@ class WebsitesController extends \BaseController {
 
 	/**
 	 * Display a listing of the resource.
-	 * GET /websites
+	 * GET /websites/
 	 *
 	 * @return Response
 	 */

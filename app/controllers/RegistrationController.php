@@ -22,7 +22,7 @@ class RegistrationController extends \BaseController {
 
 	/**
 	 * Display a listing of the resource.
-	 * GET /registration
+	 * GET /registration/
 	 *
 	 * @return Response
 	 */

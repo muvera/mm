@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('content')
-
+<!-- -->
 <h1>Edit User</h1>
 {{Form::model($user,['method'=>'PATCH', 'route'=>['users.update',$user->id]])}}
 		<!-- name -->

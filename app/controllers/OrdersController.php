@@ -10,7 +10,7 @@ class OrdersController extends \BaseController {
 	 */
 	public function index()
 	{
-		//
+		///
 		$user = Auth::user();
 		$orders = $user->orders()->get();
 		return View::make('orders.index')

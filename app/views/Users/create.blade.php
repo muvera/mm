@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('content')
-
+<!-- -->
 <h1>Login</h1>
 
 	{{ Form::open(array('route' => 'sessions.store')) }}

@@ -2,7 +2,7 @@
 
 class ProductsController extends \BaseController {
 
-	// FILTER
+	// FILTE
 	 public function __construct() {
         $this->beforeFilter('auth', array('except' => array('index', 'show')));
         }

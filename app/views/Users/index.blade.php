@@ -3,7 +3,7 @@
 
 <h1>Show All Users</h1>
 
-
+<!-- -->
 <div class="bs-example" data-example-id="striped-table">
     <table class="table table-striped">
       <thead>

@@ -5,7 +5,7 @@ class CartsController extends \BaseController {
 
 
 		public function index(){
-
+//
 		$products = Session::get('products');
 
 		return View::make('carts.index')

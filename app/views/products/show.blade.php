@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('content')
-
+<!-- -->
           @if(Auth::user())
          <!--  ONLY MEMBERS -->
               @if(Auth::user()->roles()->first()->name == 'member')

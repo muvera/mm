@@ -1,6 +1,7 @@
+
 @extends('layouts.master')
 @section('content')
-
+<!-- -->
 <h2>Albums</h2>
 <div class="row">
   <div class="col-md-6">
