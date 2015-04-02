@@ -1,0 +1,25 @@
+<div class="well">
+	<div class="row">
+<?php echo Form::open(['route'=>'services.store']); ?>
+
+
+<?php echo Form::hidden('track_id', $track->id); ?>
+
+
+
+		<!-- service -->
+<div class="form-group">
+<?php echo Form::label('service_id', 'Select Service'); ?>
+
+<select name="service_id">
+	<?php foreach($services as $service): ?>
+  <option value="<?php echo $service->id; ?>">Service: <?php echo $service->name; ?></option>
+  	<?php endforeach; ?>
+</select>
+</div>
+
+
+
+</div>
+
+</div>

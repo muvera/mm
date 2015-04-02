@@ -1,0 +1,7 @@
+<?php $__env->startSection('content'); ?>
+
+<h1><?php echo $user->username; ?></h1>
+<p><?php echo $user->email; ?></p>
+
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

@@ -1,0 +1,12 @@
+<?php echo Form::open(['route'=>'add']); ?>
+
+<?php echo Form::hidden('track_id', $track->id); ?>
+
+<?php echo Form::hidden('album',$product->name); ?>
+
+<?php echo Form::hidden('album_id',$product->id); ?>
+
+<?php echo Form::hidden('artist',$product->artist()->first()['name']); ?>
+
+<button type="submit" class="btn btn-primary">99¢</button>
+<?php echo Form::close(); ?>

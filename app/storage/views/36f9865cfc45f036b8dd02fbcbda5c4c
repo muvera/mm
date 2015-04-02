@@ -1,0 +1,90 @@
+<?php $__env->startSection('content'); ?>
+<div class="row">
+	<div class="col-md-3">
+		<h3><?php echo $product->name; ?></h3>
+			<img src="<?php echo asset('uploads/albums/' . Session::get('album_id') . '/' . $product->img); ?>" class="thumbnail img-responsive">
+		  <h5><?php echo $product->artist()->first()['name']; ?></h5>
+    </div>
+		<div class="col-md-9">
+			<div class="well">
+
+
+<table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Track</th>
+          <th>Name</th>
+          <th>Player</th>
+          <th>Upl</th>
+          <th>Service</th>
+          <th>Monitor</th>
+        </tr>
+      </thead>
+      <tbody>
+<?php foreach($tracks as $track): ?>
+		<tr>
+          <th scope="row"><?php echo $track->track_number; ?></th>
+          <td><?php echo $track->name; ?></td>
+          <td>
+  <?php if($track->file): ?>
+  <?php echo $__env->make('include.form.track.play', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+  <?php endif; ?>
+ 
+	
+          </td>
+          <td>
+            <!-- View Video Icon -->
+ 
+  <?php echo $__env->make('include.form.file.create', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+      <?php
+    $final = preg_replace('#[ -]+#', '-', $track->name);
+    ?>
+  <a href="<?php echo asset('/uploads/albums/' . $product->id); ?>/<?php echo $final; ?>.mp4">
+
+  <span class="glyphicon glyphicon-film" aria-hidden="true"></span>
+  </a>
+          </td>
+
+          <td>
+            <!--    If track has services, loop them -->
+   <?php if(count($track->service()->first())): ?>
+           <!-- Loop services -->
+        <?php foreach($track->service()->get() as $service): ?>
+            
+          <?php echo $__env->make('include.modals.service_index', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+      
+        <?php endforeach; ?>
+
+
+    
+   <?php else: ?>
+   No service listed
+   <?php endif; ?>
+          </td>
+
+          <td>
+            <?php echo $__env->make('include.form.services.create', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+          </td>
+        </tr>
+
+<?php endforeach; ?>
+
+      </tbody>
+    </table>
+<?php echo $__env->make('include.form.track.create', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+</div>
+		</div>
+</div>
+
+
+
+
+<?php echo $product->description; ?>
+
+
+
+
+
+
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

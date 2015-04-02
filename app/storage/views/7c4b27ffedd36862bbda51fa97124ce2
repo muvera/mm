@@ -1,0 +1,16 @@
+<?php $__env->startSection('content'); ?>
+<h1><?php echo $artist->name; ?></h1>
+<p><?php echo $artist->alias; ?></p>
+<div class="row">
+<?php foreach($products as $product): ?>
+
+  <div class="col-md-3">
+    <a href="<?php echo route('products.show', $product->id); ?>" class="thumbnail"><?php echo $product->name; ?>
+
+      <img src="<?php echo asset('uploads/albums/' . $product->id . '/' . $product->img); ?>" class="thumbnail">
+    </a>
+  </div>
+<?php endforeach; ?>
+</div>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

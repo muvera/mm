@@ -1,0 +1,2 @@
+	<?php $store = User::where('id', '=', $order->store_id)->first(); ?>
+	<?php echo $store->profiles()->first()->business; ?>  Order ID# <?php echo $order->id; ?>

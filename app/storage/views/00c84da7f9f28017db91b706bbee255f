@@ -1,0 +1,91 @@
+<?php $__env->startSection('content'); ?>
+
+
+<h4>Crear Perfil</h4>
+<?php echo Form::open(['route'=>'profiles.store']); ?>
+
+		<!-- Business -->
+<div class="form-group">
+
+		<?php echo Form::hidden('business', null, ['class'=>'form-control']); ?>
+
+</div>
+
+		<!-- Contact -->
+<div class="form-group">
+
+		<?php echo Form::hidden('contact', null, ['class'=>'form-control']); ?>
+
+</div>
+
+		<!-- name -->
+<div class="form-group">
+		<?php echo Form::label('name', 'Nombre:'); ?>
+
+		<?php echo Form::text('name', null, ['class'=>'form-control']); ?>
+
+</div>
+
+		<!-- last -->
+<div class="form-group">
+		<?php echo Form::label('last', 'Apellido:'); ?>
+
+		<?php echo Form::text('last', null, ['class'=>'form-control']); ?>
+
+</div>
+
+		<!-- address -->
+<div class="form-group">
+		<?php echo Form::label('address', 'Domicilio:'); ?>
+
+		<?php echo Form::text('address', null, ['class'=>'form-control']); ?>
+
+</div>
+
+		<!-- address2 -->
+<div class="form-group">
+		<?php echo Form::label('address2', 'Apt:'); ?>
+
+		<?php echo Form::text('address2', null, ['class'=>'form-control']); ?>
+
+</div>
+
+		<!-- city -->
+<div class="form-group">
+		<?php echo Form::label('city', 'Ciudad:'); ?>
+
+		<?php echo Form::text('city', null, ['class'=>'form-control']); ?>
+
+</div>
+
+		<!-- state -->
+<div class="form-group">
+		<?php echo Form::label('state', 'Estado:'); ?>
+
+		<?php echo Form::text('state', null, ['class'=>'form-control']); ?>
+
+</div>
+
+		<!-- zip -->
+<div class="form-group">
+		<?php echo Form::label('zip', 'Codigo Postal:'); ?>
+
+		<?php echo Form::text('zip', null, ['class'=>'form-control']); ?>
+
+</div>
+
+		<!-- country -->
+<div class="form-group">
+		<?php echo Form::label('country', 'Pais:'); ?>
+
+		<?php echo Form::text('country', null, ['class'=>'form-control']); ?>
+
+</div>
+
+<button type="submit" class="bnt btn-primary btn-lg">Submit</button>
+
+<?php echo Form::close(); ?>
+
+
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

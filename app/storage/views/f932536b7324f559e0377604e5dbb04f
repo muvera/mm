@@ -1,0 +1,4 @@
+<audio controls>
+  <source src="<?php echo asset('uploads/albums/' . Session::get('album_id') . '/' . $track->file); ?>" type="audio/mpeg">
+Your browser does not support the audio element.
+</audio>

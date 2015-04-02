@@ -1,0 +1,42 @@
+<div class="row">
+	<div class="col-md-3">
+		<h3><?php echo $product->name; ?></h3>
+			<img src="<?php echo asset('uploads/company/' .$user->id.'/'. $product->id . '/' . $product->img); ?>" class="thumbnail img-responsive">
+		  <h5><?php echo $product->artist()->first()['name']; ?></h5>
+      <p><?php echo $product->description; ?></p>
+    </div>
+		<div class="col-md-9">
+			<div class="well">
+
+
+<table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Track</th>
+          <th>Name</th>
+          <th>Player</th>
+          <th>Buy</th>
+        </tr>
+      </thead>
+      <tbody>
+<?php foreach($tracks as $track): ?>
+		<tr>
+          <th scope="row"><?php echo $track->track_number; ?></th>
+          <td><?php echo $track->name; ?></td>
+          <td>
+  <?php if($track->file): ?>
+  <?php echo $__env->make('include.form.track.play', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+  <?php endif; ?>
+          </td>
+          <td>
+<?php echo $__env->make('payments.add_item', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+  </td>
+  </tr>
+
+<?php endforeach; ?>
+
+      </tbody>
+    </table>
+</div>
+		</div>
+</div>

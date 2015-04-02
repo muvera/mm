@@ -1,0 +1,25 @@
+<?php $__env->startSection('content'); ?>
+
+<h1>Show All Roles</h1>
+
+<ul>
+<?php foreach($roles as $role): ?>
+
+<li><a href="<?php echo route('roles.show', $role->id); ?>"><?php echo $role->name; ?></a> 
+	| <a href="<?php echo route('roles.edit',$role->id); ?>">Edit</a> </li>
+	<?php echo Form::open(['method'=>'DELETE', 'route'=>['roles.destroy', $role->id]]); ?>
+
+	<?php echo Form::hidden('id', $role->id); ?>
+
+	<?php echo Form::submit('delete'); ?>
+
+	<?php echo Form::close(); ?>
+
+
+<?php endforeach; ?>
+</ul>
+
+<a href="<?php echo route('roles.create'); ?>" class="">New</a>
+
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

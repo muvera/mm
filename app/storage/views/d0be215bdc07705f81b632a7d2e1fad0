@@ -1,0 +1,81 @@
+<?php $__env->startSection('content'); ?>
+
+<h1>New Album</h1>
+<?php echo Form::open(['route'=>'products.store']); ?>
+
+		<!-- name -->
+<div class=name"form-group">
+		<?php echo Form::label('name', 'Album Name:'); ?>
+
+		<?php echo Form::text('name', null, ['class'=>'form-control']); ?>
+
+</div>
+<!-- dropdown list -->
+<?php echo Form::label('artist_id', 'Artist:'); ?>
+
+<select class="form-control" name="artist_id">
+<?php foreach($artists as $artist): ?>
+<option name="artist" value="<?php echo $artist->id; ?>" type="text" ><?php echo $artist->name; ?> - <?php echo $artist->alias; ?></option>
+<?php endforeach; ?>
+</select>
+<!-- add new artist button -->
+<a href="/artists/create" class="btn btn-default btn-sm" type="button">Add New Artist</a>
+<br>
+<!-- dropdown list -->
+<?php echo Form::label('genre_id', 'Genres:'); ?>
+
+<select class="form-control" name="genre_id">
+<?php foreach($genres as $genre): ?>
+<option name="artist" value="<?php echo $genre->id; ?>" type="text" ><?php echo $genre->name; ?> - <?php echo $genre->description; ?></option>
+<?php endforeach; ?>
+</select>
+<!-- add new artist button -->
+<a href="/genres/create" class="btn btn-default btn-sm" type="button">Add New Genre</a>
+
+<br>
+<!-- dropdown list -->
+<?php echo Form::label('cat_id', 'Show Case:'); ?>
+
+<select class="form-control" name="cat_id">
+<?php foreach($categories as $category): ?>
+<option name="artist" value="<?php echo $category->id; ?>" type="text" ><?php echo $category->name; ?> - <?php echo $category->description; ?></option>
+<?php endforeach; ?>
+</select>
+<!-- add new artist button -->
+<a href="/genres/create" class="btn btn-default btn-sm" type="button">Add New Show Case</a>
+
+
+
+		<!-- description -->
+<div class="form-group">
+		<?php echo Form::label('description', 'Description:'); ?>
+
+		<?php echo Form::textarea('description', null, ['class'=>'form-control']); ?>
+
+</div>
+
+		<!-- catalog -->
+<div class="form-group">
+		<?php echo Form::label('catalog', 'Catalog Number:'); ?>
+
+		<?php echo Form::text('catalog', null, ['class'=>'form-control']); ?>
+
+</div>
+
+		<!-- barcode -->
+<div class="form-group">
+		<?php echo Form::label('barcode', 'Barcode Number:'); ?>
+
+		<?php echo Form::text('barcode', null, ['class'=>'form-control']); ?>
+
+</div>
+
+
+
+<button class="btn btn-success btn-lg" type="submit">Submit</button>
+<?php echo Form::close(); ?>	
+
+<?php $__env->stopSection(); ?>
+
+
+<?php echo $__env->make('layouts.master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

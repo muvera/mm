@@ -1,0 +1,28 @@
+<?php $__env->startSection('content'); ?>
+
+<h1>Edit User</h1>
+<?php echo Form::model($user,['method'=>'PATCH', 'route'=>['users.update',$user->id]]); ?>
+
+		<!-- name -->
+<div class="form-group">
+		<?php echo Form::label('username', 'username:'); ?>
+
+		<?php echo Form::text('username', null, ['class'=>'form-control']); ?>
+
+</div>
+
+		<!-- description -->
+<div class="form-group">
+		<?php echo Form::label('email', 'Email:'); ?>
+
+		<?php echo Form::text('email', null, ['class'=>'form-control']); ?>
+
+</div>
+	
+<?php echo Form::submit(); ?>
+
+<?php echo Form::close(); ?>
+
+
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

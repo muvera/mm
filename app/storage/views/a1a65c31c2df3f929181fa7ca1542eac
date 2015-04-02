@@ -1,0 +1,20 @@
+<?php $__env->startSection('content'); ?>
+
+          <?php if(Auth::user()): ?>
+         <!--  ONLY MEMBERS -->
+              <?php if(Auth::user()->roles()->first()->name == 'member'): ?>
+                <?php echo $__env->make('products.roles.show.member', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+              <?php endif; ?>
+            <!--   ONLY CUSTOMERS -->
+               <?php if(Auth::user()->roles()->first()->name == 'customer'): ?>
+                <?php echo $__env->make('products.roles.show.customer', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+              <?php endif; ?>
+
+          <?php else: ?>
+          	<!-- ONLY GUESTS -->
+                <?php echo $__env->make('products.roles.show.customer', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+          <?php endif; ?>
+
+
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

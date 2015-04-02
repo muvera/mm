@@ -1,0 +1,34 @@
+<?php $__env->startSection('content'); ?>
+<h3>Mi Musica</h3>
+<?php foreach($orders as $key=>$order): ?>
+<div class="well">
+<?php if(!$order->status == '1'): ?>
+<?php echo $__env->make('payments.paypal', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?><br>
+<?php endif; ?>
+
+<?php if(Auth::user()->roles()->first()->name == 'member'): ?>
+	<?php echo $__env->make('orders.roles.member', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<?php endif; ?>
+
+
+<?php if(Auth::user()->roles()->first()->name == 'customer'): ?>
+	<?php echo $__env->make('orders.roles.customer', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<?php endif; ?>
+
+
+	<?php if($order->products): ?>
+		<?php $items = unserialize($order->products); ?>
+		<div class="row">
+		<?php foreach($items as $key=>$item): ?>
+		<div class="col-md-3"><?php echo $item['name']; ?></div>
+		<div class="col-md-3"><?php echo $item['album']; ?></div>
+		<div class="col-md-3"><?php echo $item['artist']; ?></div>
+		<div class="col-md-3"> <?php $track = Track::where('id','=', $item['id'])->first(); ?> <?php echo $__env->make('payments.download', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?> </div>
+		<?php endforeach; ?>
+	</div>
+	<?php endif; ?>
+</div>
+<?php endforeach; ?>
+
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

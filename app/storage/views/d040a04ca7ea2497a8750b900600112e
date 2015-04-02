@@ -1,0 +1,10 @@
+
+<!-- MEMBERS ONLY -->
+<?php if(Auth::user()->roles()->first()->name == 'member'): ?>
+	<?php echo $__env->make('profiles.roles.create.member', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<?php endif; ?>
+
+<!-- CUSTOMERS ONLY -->
+<?php if(Auth::user()->roles()->first()->name == 'customer'): ?>
+	<?php echo $__env->make('profiles.roles.create.customer', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<?php endif; ?>

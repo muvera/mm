@@ -1,0 +1,59 @@
+
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#<?php echo $track->id; ?>">
+  <span class="glyphicon glyphicon-upload" aria-hidden="true"></span>
+</button>
+
+
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="<?php echo $track->id; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Add File: mp3</h4>
+      </div>
+      <div class="modal-body">
+
+
+  <?php echo Form::open(['route'=>'trackupload', 'files'=> true]); ?> 
+  <?php echo Form::hidden('product_id', $product->id); ?> 
+  <?php echo Form::hidden('track_id', $track->id); ?>
+
+  <?php echo Form::hidden('artist_name', $product->artist()->first()['name']); ?>
+
+  <?php echo Form::hidden('album_cover', $product->img); ?>
+
+
+Artist: <?php echo $product->artist()->first()['name']; ?>
+
+
+     <!-- track -->
+ <div class="form-group">
+     <?php echo Form::label('track_name', 'Track Name:'); ?>
+
+     <?php echo Form::text('track_name', $track->name, ['class'=>'form-control']); ?>
+
+ </div>
+
+    <!-- File -->
+<div class="form-group">
+    <?php echo Form::label('file', 'File:'); ?>
+
+    <?php echo Form::file('file'); ?>
+
+</div>
+
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary">Upload</button>
+      </div>
+    </div>
+  </div>
+</div>
+<?php echo Form::close(); ?>

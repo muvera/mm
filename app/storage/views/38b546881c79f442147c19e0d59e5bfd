@@ -1,0 +1,31 @@
+<?php $__env->startSection('content'); ?>
+
+<h2>Crear Generos</h2>
+<?php echo Form::open(['route'=>'genres.store']); ?>
+
+
+		<!-- name -->
+<div class="form-group">
+		<?php echo Form::label('name', 'Nombre:'); ?>
+
+		<?php echo Form::text('name', null, ['class'=>'form-control']); ?>
+
+</div>
+
+		<!-- Description -->
+<div class="form-group">
+		<?php echo Form::label('description', 'Dsescripción:'); ?>
+
+		<?php echo Form::textarea('description', null, ['class'=>'form-control']); ?>
+
+</div>
+
+
+<?php echo Form::submit(); ?>
+
+<?php echo Form::close(); ?>
+
+
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

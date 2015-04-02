@@ -1,0 +1,36 @@
+
+<div class="row">
+  <div class="col-md-8">
+      <?php if(Auth::user()): ?>
+   <!--    Only Members -->
+      <?php if(Auth::user()->roles()->first()->name == 'member'): ?>
+       <?php echo $__env->make('layouts.nav', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+      <?php endif; ?>
+  <!--  Only Customers -->
+       <?php if(Auth::user()->roles()->first()->name == 'customer'): ?>
+       <?php echo $__env->make('layouts.menu.customer.index', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+      <?php endif; ?>
+
+    <?php else: ?>
+    <!-- Only Guests -->
+      <?php echo $__env->make('layouts.menu.guest.index', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+  <?php endif; ?>
+
+  </div>
+  <div class="col-md-4 pull-right">
+    <?php if(Session::get('products')): ?>
+<a href="/cart" class="btn btn-default btn-block"></span>  Ver tus <?php echo count(Session::get('products')); ?> temas.</a>
+    <?php endif; ?>
+
+    <?php if(Session::get('products')): ?>
+<?php echo Form::open(['route'=>'orders.store']); ?>
+
+<button type="submit" class="btn btn-success btn-block"><span class="glyphicon glyphicon-shopping-cart"></span>  Checkout</button>
+<?php echo Form::close(); ?>
+
+    <?php endif; ?>
+
+  </div>
+</div>
+
+

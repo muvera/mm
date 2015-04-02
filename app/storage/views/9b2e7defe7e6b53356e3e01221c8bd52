@@ -1,0 +1,23 @@
+<h1>Login</h1>
+
+	<?php echo Form::open(array('route' => 'sessions.store')); ?>
+
+				<!-- email -->
+		<div class="form-group">
+				<?php echo Form::label('email', 'Email:'); ?>
+
+				<?php echo Form::text('email', null, ['class'=>'form-control']); ?>
+
+		</div>
+
+				<!-- password -->
+		<div class="form-group">
+				<?php echo Form::label('password', 'Password:'); ?>
+
+				<?php echo Form::password('password', null, ['class'=>'form-control']); ?>
+
+		</div>
+
+		
+		<button type='submit' >Submit</button>
+	<?php echo Form::close(); ?>

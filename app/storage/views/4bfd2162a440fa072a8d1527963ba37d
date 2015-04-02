@@ -1,0 +1,50 @@
+<?php $__env->startSection('content'); ?>
+
+
+
+<?php if($artists): ?>
+		<?php if($artists->count()): ?>
+
+<table class="table table-striped">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Photo</th>
+          <th>Artist</th>
+          <th>Alias</th>
+        </tr>
+      </thead>
+      <tbody>
+<?php foreach($artists as $artist): ?>
+
+      <tr>
+          <td><?php echo $artist->id; ?></td>
+          <td>no file</td>
+		<td><a href="<?php echo route('artists.show', $artist->id); ?>"><?php echo $artist->name; ?></a></td>
+          <td><?php echo $artist->alias; ?></td>
+
+        </tr>
+
+<?php endforeach; ?>
+
+ </tbody>
+    </table>
+		<?php else: ?>
+		No Artist
+		<?php endif; ?>
+
+<?php else: ?>
+
+<div class="row">
+	<center>
+<img src="<?php echo asset('/portada.jpg'); ?>" alt="D & O Records" class="thumbnail img-responsive">
+	</center>
+</div>
+<?php endif; ?>
+
+<?php $__env->stopSection(); ?>
+
+  
+
+     
+<?php echo $__env->make('layouts.master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

@@ -1,0 +1,106 @@
+
+
+<div class="btn-group" role="group" >
+<!-- Button trigger modal -->
+<!-- Using Image of Service as a Button -->
+<a data-toggle="modal" data-target="#<?php echo $track->id; ?>_<?php echo $service->id; ?>">
+  <img src="<?php echo $service->image; ?>" alt="<?php echo $service->name; ?>"  width="30">
+</a>
+</div>
+
+
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="<?php echo $track->id; ?>_<?php echo $service->id; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Add <?php echo $service->name; ?> Videos</h4>
+      </div>
+      <div class="modal-body">
+  <!-- If there are videos  -->
+<?php if(count($track->video()->first())): ?>
+    <!-- Get all videos from track -->
+  <?php foreach($track->video()->get() as $video): ?>
+        <!-- if the service id matches with the video service id show -->
+          <?php if($video->service()->first()['id'] == $service->id): ?>
+        
+<button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#video_service_<?php echo $video->type()->first()['id']; ?>" aria-expanded="false" aria-controls="collapseExample">
+ <?php echo $video->type()->first()['name']; ?>
+
+</button>
+<div class="collapse" id="video_service_<?php echo $video->type()->first()['id']; ?>">
+  <hr>
+   <center> <?php echo $video->code; ?></center>
+
+</div>
+
+
+          
+          
+          <?php endif; ?>
+   
+  <?php endforeach; ?>
+<?php endif; ?>
+
+<hr>
+<div class="well">
+<?php echo Form::open(['route'=>'videos.store']); ?>
+
+<?php echo Form::hidden('product_id', $product->id); ?>
+
+<?php echo Form::hidden('track_id', $track->id); ?>
+
+<?php echo Form::hidden('service_id', $service->id); ?>
+
+
+<h4>New Video Details</h4>
+Album: <?php echo $product->name; ?> <br>
+Track: <?php echo $track->name; ?> <br>
+Service: <?php echo $service->name; ?> 
+
+
+
+    <!-- Video type -->
+<div class="form-group">
+<?php echo Form::label('type_id', 'Video Type:'); ?>
+
+<select name="type_id">
+  <?php foreach($types as $type): ?>
+  <option value="<?php echo $type->id; ?>">Type: <?php echo $type->name; ?></option>
+    <?php endforeach; ?>
+</select>
+</div>
+
+
+    <!-- name -->
+      <div class="form-group">
+         <?php echo Form::label('name', 'URL:'); ?>
+
+         <?php echo Form::text('name', null, ['class'=>'form-control']); ?>
+
+      </div>
+
+
+            <!-- Embed Code -->
+        <div class="form-group">
+            <?php echo Form::label('code', 'Embed Code:'); ?>
+
+            <?php echo Form::text('code', null, ['class'=>'form-control']); ?>
+
+        </div>
+        
+      </div>
+
+</div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        <button type="submit" class="btn btn-primary">Monitor Video</button>
+      </div>
+    </div>
+  </div>
+</div>
+<?php echo Form::close(); ?>

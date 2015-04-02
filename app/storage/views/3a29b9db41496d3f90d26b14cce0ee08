@@ -1,0 +1,2 @@
+<?php echo $__env->make('registration.modals.customer_registration', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?> or 
+<?php echo $__env->make('users.modals.login', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

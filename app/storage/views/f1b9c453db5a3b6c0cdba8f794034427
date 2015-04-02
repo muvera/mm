@@ -1,0 +1,40 @@
+<?php $__env->startSection('content'); ?>
+<h1><?php echo $category->name; ?></h1>
+<p><?php echo $category->description; ?></p>
+
+
+<table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Id</th>
+          <th>Cover</th>
+          <th>Catalog#</th>
+          <th>Album Name</th>
+          <th>Alias</th>
+          <th>Barcode</th>
+        </tr>
+      </thead>
+      <tbody>
+
+<?php foreach($products as $product): ?>
+
+        <tr>
+          <td><?php echo $product->id; ?></td>
+          <td><img src="/uploads/<?php echo $product->img; ?>" class="thumnail img-responsive"></td>
+          <td><?php echo $product->catalog; ?></td>
+          <td><?php echo $product->name; ?></td>
+          <td><?php echo $product->alias; ?></td>
+		  <td><?php echo $product->barcode; ?></td>
+        </tr>
+<?php endforeach; ?>
+
+     </tbody>
+    </table>
+
+<a href="<?php echo route('products.create'); ?>" type="button" class="btn btn-primary">New Album</a>
+<?php $__env->stopSection(); ?>
+
+
+
+ 
+<?php echo $__env->make('layouts.master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

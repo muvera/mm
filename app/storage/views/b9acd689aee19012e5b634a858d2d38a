@@ -1,0 +1,39 @@
+<?php $__env->startSection('content'); ?>
+<h1><?php echo $category->name; ?></h1>
+<p><?php echo $category->description; ?></p>
+
+
+
+<div class="row">
+<?php foreach($products as $product): ?>
+<div class="col-md-3">
+      <div class="well">
+        <center>
+          <a href="<?php echo route('products.show', $product->id); ?>">
+         <img src="/uploads/company/<?php echo $user->id; ?>/<?php echo $product->id; ?>/<?php echo $product->img; ?>" class="thumbnail img-responsive" width="200">
+        </a>
+        </center>
+        <?php echo $product->catalog; ?>
+
+        <?php echo $product->name; ?>
+
+        <?php echo $product->alias; ?>
+
+        <?php echo $product->barcode; ?>
+
+      </div>
+      </div>
+<?php endforeach; ?>
+</div>
+
+<?php if(Auth::user()): ?>
+      <?php if(Auth::user()->roles()->first()->name == 'member'): ?>
+        <a href="<?php echo route('products.create'); ?>" type="button" class="btn btn-primary">New Album</a>
+      <?php endif; ?>
+<?php endif; ?>
+<?php $__env->stopSection(); ?>
+
+
+
+ 
+<?php echo $__env->make('layouts.master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

@@ -1,0 +1,29 @@
+<?php $__env->startSection('content'); ?>
+
+<?php echo Form::open(['route'=>'backgroundupload', 'files'=> true]); ?>
+
+
+		<!-- Thumbnail -->
+<div class="form-group">
+		<?php echo Form::label('file', 'Thumbnail:'); ?>
+
+		<?php echo Form::file('file'); ?>
+
+</div>
+
+
+		<!-- description -->
+<div class="form-group">
+		<?php echo Form::label('description', 'Descripsion:'); ?>
+
+		<?php echo Form::text('description', null, ['class'=>'form-control']); ?>
+
+</div>
+
+
+<button type="submit" class="btn btn-defatul">Upload</button>
+<?php echo Form::close(); ?>
+
+
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

@@ -1,0 +1,39 @@
+<?php $__env->startSection('content'); ?>
+
+<div class="panel panel-default">
+  <div class="panel-body">
+
+<h3>Shopping Cart</h3>
+
+<div class="row">
+<?php foreach($products as $key=>$product): ?>
+<div class="col-md-3">
+	<strong>Num</strong><br>
+	<?php echo $product['number']; ?>
+
+</div>
+<div class="col-md-3">
+	<strong>Artist</strong><br>
+	<?php echo $product['name']; ?>
+
+</div>
+<div class="col-md-3">
+	<strong>Album</strong><br>
+	<?php echo $product['album']; ?>
+
+</div>
+<div class="col-md-3">
+	<strong>Track</strong><br>
+	<?php echo $product['name']; ?>
+
+</div>
+<hr>
+<?php endforeach; ?>
+</div>
+
+
+  </div>
+</div>
+
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

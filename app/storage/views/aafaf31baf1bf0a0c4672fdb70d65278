@@ -1,0 +1,72 @@
+
+    <?php 
+    $profile = Auth::user()->profiles()->first(); 
+    ?>
+<?php if($profile==true): ?>
+
+<div class="row">
+	<div class="col-md-6">
+
+<h2>Hola <?php echo Auth::user()->username; ?> <small><?php echo Auth::user()->email; ?></small></h2>
+		<h3>Perfil</h3>
+
+Business Name: <?php echo $profile->business; ?><br>
+Contact: <?php echo $profile->contact; ?><br>
+Domicilio: <?php echo $profile->address; ?><br>
+Suite: <?php echo $profile->address2; ?><br>
+City: <?php echo $profile->city; ?><br>
+State: <?php echo $profile->state; ?><br>
+Country: <?php echo $profile->country; ?><br>
+<br>
+
+	<?php echo Form::open(['method'=>'DELETE', 'route'=>['profiles.destroy',$profile->id]]); ?>
+
+	<?php echo Form::hidden('id',$profile->id); ?>
+
+<a class="btn btn-default" href="<?php echo route('profiles.edit',$profile->id); ?>">Edit</a>
+<button class="btn btn-default" type="submit">Delete</button>
+	<?php echo Form::close(); ?>
+
+
+
+
+	</div>
+	<div class="col-md-6 well">
+<h4>Video Imagen</h4>
+<p>Agregar imagen(s) de fondo.</p>
+<a class="btn btn-default" href="<?php echo route('backgrounds.create'); ?>">Agregar Imagen de Fondo</a>
+
+<table class="table">
+      <caption>Images de fondo disponibles  <?php echo count(Auth::user()->backgrounds()->get()); ?></caption>
+      <thead>
+        <tr>
+
+          <th>Fondo</th>
+          <th>Descripsion</th>
+          <th>Edicion</th>
+        </tr>
+      </thead>
+      <tbody>
+      	<?php foreach(Auth::user()->backgrounds()->get() as $image): ?>
+        <tr>
+          <td><img src="<?php echo asset('/uploads/company/'. Auth::user()->id . '/' . $image->file); ?>" width="100" alt="$image->file"></td>
+          <td><?php echo $image->description; ?></td>
+          <td>@mdo</td>
+        </tr>
+        <?php endforeach; ?>
+      </tbody>
+    </table>
+
+
+		
+
+
+
+	</div>
+</div>
+
+
+<?php else: ?>
+<h2>Hola <?php echo Auth::user()->email; ?></h2> 
+<a class="btn btn-warning btn-block" href="<?php echo route('profiles.create'); ?>">Crear Perfil Ahora</a>
+<?php endif; ?>

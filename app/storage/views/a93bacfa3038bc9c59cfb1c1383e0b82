@@ -1,0 +1,41 @@
+<?php $__env->startSection('content'); ?>
+
+<div class="row">
+	<div class="col-md-6">
+<h2>Hola <?php echo Auth::user()->username; ?> <small><?php echo Auth::user()->email; ?></small></h2>
+		<h3>Perfil</h3>
+
+Business Name: <?php echo $profile->business; ?><br>
+Contact: <?php echo $profile->contact; ?><br>
+Domicilio: <?php echo $profile->address; ?><br>
+Suite: <?php echo $profile->address2; ?><br>
+City: <?php echo $profile->city; ?><br>
+State: <?php echo $profile->state; ?><br>
+Country: <?php echo $profile->country; ?><br>
+<br>
+
+	<?php echo Form::open(['method'=>'DELETE', 'route'=>['profiles.destroy',$profile->id]]); ?>
+
+	<?php echo Form::hidden('id',$profile->id); ?>
+
+<a class="btn btn-default" href="<?php echo route('profiles.edit',$profile->id); ?>">Edit</a>
+<button class="btn btn-default" type="submit">Delete</button>
+	<?php echo Form::close(); ?>
+
+	</div>
+	<div class="col-md-6">
+    <?php if(Auth::user()->roles()->first()->name == 'member'): ?>
+      <?php echo $__env->make('profiles.modules.video-image.blade.php', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+    <?php endif; ?>
+	</div>
+</div>
+
+
+
+<?php $__env->stopSection(); ?>
+
+
+
+
+
+<?php echo $__env->make('layouts.master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

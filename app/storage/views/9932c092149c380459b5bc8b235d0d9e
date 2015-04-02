@@ -1,0 +1,10 @@
+
+<?php echo Form::open(['route'=>'upload', 'files'=> true]); ?>
+
+		<?php echo Form::file('image'); ?>
+
+		<?php echo Form::hidden('album_id', $product->id); ?>
+
+		<?php echo Form::submit('Submit'); ?>
+
+<?php echo Form::close(); ?>		

@@ -1,0 +1,28 @@
+<?php $__env->startSection('content'); ?>
+
+<h1>Edit genre</h1>
+<?php echo Form::model($genre,['method'=>'PATCH', 'route'=>['genres.update', $genre->id]]); ?>
+
+		<!-- name -->
+<div class="form-group">
+		<?php echo Form::label('name', 'Name:'); ?>
+
+		<?php echo Form::text('name', null, ['class'=>'form-control']); ?>
+
+</div>
+
+		<!-- description -->
+<div class="form-group">
+		<?php echo Form::label('description', 'Description:'); ?>
+
+		<?php echo Form::textarea('description', null, ['class'=>'form-control']); ?>
+
+</div>
+	
+<?php echo Form::submit(); ?>
+
+<?php echo Form::close(); ?>
+
+
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
