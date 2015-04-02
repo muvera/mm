@@ -61,7 +61,7 @@ return array(
 			// 'password'  => 'root',
 			// Remote
 			'username'  => 'forge',
-			'password'  => 'ZeKOy0NOqHlWYkhmnxXC',
+			'password'  => 'Jwdpv5d9zh3Kp6Yy8LEh',
 			'charset'   => 'utf8',
 			'collation' => 'utf8_unicode_ci',
 			'prefix'    => '',
