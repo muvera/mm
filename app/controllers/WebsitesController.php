@@ -86,4 +86,16 @@ class WebsitesController extends \BaseController {
 		//
 	}
 
+	
+	# API
+	public function api($username)
+	{
+
+		$user = User::where('username', '=', $username)->first();
+        $products = $user->products()->where('active', '=', '1')->get();
+        header('Access-Control-Allow-Origin: *');
+        return Response::json(array('products'=>$products->toArray()))->setCallback(Input::get('callback'));
+
+	}
+
 }

@@ -1,5 +1,5 @@
 <?php $__env->startSection('content'); ?>
-
+<!-- -->
           <?php if(Auth::user()): ?>
          <!--  ONLY MEMBERS -->
               <?php if(Auth::user()->roles()->first()->name == 'member'): ?>

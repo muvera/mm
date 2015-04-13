@@ -40,6 +40,7 @@
             <!-- View Video Icon -->
 
   @include('include.form.file.create')
+  @include('include.form.server.create')
 
   @include('include.modals.video')
           </td>

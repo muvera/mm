@@ -1,5 +1,15 @@
 <?php if($order->status == '1'): ?>
-<a href="/uploads/company/<?php echo $order->store_id; ?>/<?php echo $item['album_id']; ?>/<?php echo $item['id']; ?>/<?php echo $track->file; ?>" class="btn btn-primary btn-block btn-sm">Download</a>
+<?php echo Form::open(['route'=>'download']); ?>
+
+<?php echo Form::hidden('store_id', $order->store_id); ?>
+
+<?php echo Form::hidden('album_id', $item['album_id']); ?>
+
+<?php echo Form::hidden('track_id', $item['id']); ?>
+
+<button type="submit" class="btn btn-primary btn-sm btn-block">Download</button>
+<?php echo Form::close(); ?>
+
 <br>
 <?php else: ?>
 <button class="btn btn-default btn-sm btn-block">No Download</button>

@@ -1,9 +1,23 @@
 <?php $__env->startSection('content'); ?>
-Welcome <?php echo $user->username; ?>
+<h3>Estas en <?php echo $user->profiles()->first()->business; ?> <small>tienda musical</small></h3>
+<div class="row">
+<?php foreach($user->products()->paginate(50) as $product): ?>
+<div class="col-md-3">
+      <div class="well">
+        <center>
+          <a href="<?php echo route('products.show', $product->id); ?>">
+         <img src="/uploads/company/<?php echo $user->id; ?>/<?php echo $product->id; ?>/<?php echo $product->img; ?>" class="thumbnail img-responsive" width="200">
+        </a>
+        </center>
+        <?php echo $product->name; ?>
 
-<?php foreach($user->categories()->get() as $category): ?>
+        <?php echo $product->alias; ?>
 
-<a href="<?php echo route('categories.show', $category->id); ?>" class=""><?php echo $category->name; ?></a>
+                <?php echo $product->catalog; ?>
+
+      </div>
+      </div>
 <?php endforeach; ?>
+</div>
 <?php $__env->stopSection(); ?>
 <?php echo $__env->make('layouts.master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

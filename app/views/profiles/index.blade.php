@@ -23,7 +23,7 @@ Country: {{$profile->country}}<br>
 	</div>
 	<div class="col-md-6">
     @if(Auth::user()->roles()->first()->name == 'member')
-      @include('profiles.modules.video-image.blade.php')
+      @include('profiles.modules.video-image')
     @endif
 	</div>
 </div>

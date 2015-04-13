@@ -16,6 +16,7 @@ class CreateProductsTable extends Migration {
 		{
 			$table->increments('id');
 			$table->string('cat_id');
+			$table->string('active');
 			$table->string('artist_id');
 			$table->string('genre_id');
 			$table->string('img');

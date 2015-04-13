@@ -57,12 +57,11 @@ return array(
 			'host'      => 'localhost',
 			'database'  => 'monitormusical',
 			// local
-			// 'username'  => 'root',
-			// 'password'  => 'root',
+			'username'  => 'root',
+			'password'  => 'root',
 			// Remote
-			// Coment
-			'username'  => 'forge',
-			'password'  => 'Jwdpv5d9zh3Kp6Yy8LEh',
+			// 'username'  => 'forge',
+			// 'password'  => 'Jwdpv5d9zh3Kp6Yy8LEh',
 			'charset'   => 'utf8',
 			'collation' => 'utf8_unicode_ci',
 			'prefix'    => '',

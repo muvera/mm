@@ -108,11 +108,12 @@ class OrdersController extends \BaseController {
 		//
 	}
 	// VERIFY THE ORDER
-		public function verify($id, $verify)
+		public function verify()
 	{
+		$input = Input::get();
 		//
-		$order = Order::where('id', '=', $id)->first();
-		if($order->verify == $verify){
+		$order = Order::where('id', '=',$input['invoice'])->first();
+		if($order->id == $input['invoice']){
 			$order->status = '1';
 			$order->save();
 		}else{
@@ -120,6 +121,19 @@ class OrdersController extends \BaseController {
 		}
 
 		return Redirect::to('/orders');
+
+	}
+
+
+	// Download Files
+	public function download(){
+	
+		$input = Input::get();
+		$track = Track::find($input['track_id']);
+		$path = public_path('/uploads/company/' . $input['store_id']. '/'. $input['album_id']. '/' .$track->id .'/'. $track->file);
+
+	return Response::download($path);
+
 
 	}
 

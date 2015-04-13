@@ -46,7 +46,6 @@ static public function TrackName($track_name, $path)
 
 	static public function ArtistName($artist_name, $path){
 		// CONSTRUCT ARTIST NAME
-
 		// Count Characters uppercase
 		$name = strtoupper($artist_name); // String
 		$length = strlen($name); // 15 letters

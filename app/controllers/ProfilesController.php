@@ -15,7 +15,10 @@ class ProfilesController extends \BaseController {
 		
 		$user = Auth::user();
 		$profile = $user->profiles()->first();
-
+		if(!$profile)
+		{
+			return View::make('profiles.create');
+		}
 		//Profile Exists than send grab it and send it to the view
 		return View::make('profiles.index')
 				->with('profile',$profile);

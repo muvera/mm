@@ -1,4 +1,4 @@
-
+<!-- -->
 <!DOCTYPE html>
 <!-- Microdata markup added by Google Structured Data Markup Helper. -->
 <html lang="en">
@@ -25,16 +25,11 @@
 <body>
 
 <div class="container">
-	<?php if(Auth::user()): ?>
-      <?php if(Auth::user()->roles()->first()->name == 'member'): ?>
-	     <?php echo $__env->make('layouts.nav', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
-      <?php endif; ?>
-	<?php endif; ?>
-
+<?php echo $__env->make('layouts.header', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
 <?php echo $__env->yieldContent('content'); ?>
 <hr>
 <?php echo $__env->make('layouts.footer', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
-
+<hr>
 </div>
 <!-- JavaScript And BootStrap -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>

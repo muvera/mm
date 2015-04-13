@@ -74,11 +74,19 @@ class GenresController extends \BaseController {
 	public function show($id)
 	{
 		//
-			$genre	 = Genre::findOrFail($id);
-			Session::put('genre_id', $id);
+		if(!Session::get('username')){
+		return Redirect::to('/');
+		}
+		$username = Session::get('username');
+		$user = User::where('username', '=', $username)->first();
+		$genre = Genre::findOrFail($id);
+		Session::put('cat_id', $id);
+		$products = Product::where('cat_id', '=', $id)->get();
 		
 				return View::make('genres.show')
-					->with('genre',$genre );
+					->with('genre',$genre)
+					->with('user', $user)
+					->with('products',$products );
 	}
 
 	/**

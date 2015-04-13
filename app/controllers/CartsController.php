@@ -7,9 +7,11 @@ class CartsController extends \BaseController {
 		public function index(){
 //
 		$products = Session::get('products');
-
+		$username = Session::get('username');
+		$store = User::where('username', '=', $username)->first();
 		return View::make('carts.index')
-				->with('products', $products);
+				->with('products', $products)
+				->with('store', $store);
 
 		}
 

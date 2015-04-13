@@ -57,8 +57,16 @@ Route::get('/', ['as'=>'home', 'uses'=>'PagesController@index']);
 Route::resource('categories', 'CategoriesController');
 Route::resource('products', 'ProductsController');
 Route::post('upload', ['as'=>'upload', 'uses'=>'ProductsController@upload'])->before('auth');
+// Server Load Track
+Route::post('serverload', ['as'=>'serverload', 'uses'=>'TracksController@serverload'])->before('auth');
+
 Route::resource('artists', 'ArtistsController');
 Route::resource('genres', 'GenresController');
+
+// PAGES
+Route::get('about', ['as'=>'about', 'uses'=>'PagesController@about']);
+
+
 // ADMIN
 Route::get('login', 'SessionsController@create');
 Route::get('logout', 'SessionsController@destroy');
@@ -77,14 +85,17 @@ Route::get('cart', ['as'=>'cart', 'uses'=>'CartsController@index']);
 Route::post('add', ['as'=>'add', 'uses'=>'CartsController@add']);
 Route::get('remove', ['as'=>'remove', 'uses'=>'CartsController@remove']);
 Route::post('delete', ['as'=>'delete', 'uses'=>'CartsController@delete']);
-Route::get('/order_confirmation/{id}/{vefiry}', 'OrdersController@verify');
+Route::post('/order_confirmation/{id}/{vefiry}', 'OrdersController@verify');
 
 #Customers 
 Route::resource('customers', 'CustomersController');
 
-
 Route::resource('services', 'ServicesController');
+
+#Orders
 Route::resource('orders', 'OrdersController');
+Route::post('download', ['as'=>'download', 'uses'=>'OrdersController@download']);
+
 Route::resource('profiles', 'ProfilesController');
 
 Route::resource('users', 'UsersController');
@@ -98,6 +109,11 @@ Route::post('/register', ['as'=>'registration.store', 'uses'=>'RegistrationContr
 Route::resource('backgrounds', 'BackgroundsController');
 Route::post('backgroundupload', ['as'=>'backgroundupload', 'uses'=>'BackgroundsController@upload'])->before('auth');
 
+#api
+Route::get('api/{profile}', ['as'=>'api', 'uses'=>'WebsitesController@api']);
+
+
+#Anything after this will be enterpreted as store user
 Route::get('/{profile}', 'WebsitesController@show');
 
 

@@ -91,13 +91,6 @@ class ProductsController extends \BaseController {
 			mkdir($product_folder);	
 			}
 			
-
-		// Move image from user company to product folder
-			$user_id = public_path('uploads/company/'. $user->id);
-			$path = public_path('uploads/company/'.$user->id.'/' . $product->id . '/');
-			$img = Image::make($user_id. '/' . $background->file);
-			$img->save($path . 'img001.png');
-		// Copy the logo to the album folder
 		
 				return Redirect::to('/products' );
 	}
@@ -111,20 +104,17 @@ class ProductsController extends \BaseController {
 	 */
 	public function show($id)
 	{
-		//
-		if(!Session::get('username')){
-			return Redirect::to('/');
-		}
-		$username = Session::get('username');
-		$user = User::where('username', '=', $username)->first();
+		// Find The Product
 		$product = Product::findOrFail($id);
-		Session::put('album_id', $id);
-
+		// Find the Store name (username of the product)
+		$user = $product->users()->first();
+		// create a session with the username
+		Session::put('username', $user->username);
+		// Get all tracks from the product
 		$tracks = $product->track()->get();
 		$services = Service::get();
 		// Video Types
 		$types = Type::get();
-		
 	
 				return View::make('products.show')
 					->with('user', $user)
@@ -176,6 +166,11 @@ class ProductsController extends \BaseController {
 			$product->barcode = $input['barcode'];
 			$product->save();
 
+
+		// Attach the product to Artist
+			$artist = Artist::find($input['artist_id']);
+			$artist->product()->attach($product->id);
+
 			return Redirect::to('/products' );
 
 	}
@@ -195,6 +190,9 @@ class ProductsController extends \BaseController {
 				return Redirect::to('/products');
 	}
 
+
+
+
 		public function upload()
 	{
 
@@ -203,6 +201,8 @@ class ProductsController extends \BaseController {
 		$album_id = Input::get('album_id');
 		$image = Input::file('image');
 		$folder = public_path('/uploads/company/'.$user->id .'/'. $album_id);
+
+
 		
 		if(!file_exists($folder)){
 			mkdir($folder);
@@ -212,12 +212,34 @@ class ProductsController extends \BaseController {
 
 		$image->move(public_path('/uploads/company/' . $user->id. '/'. $album_id .'/'), $new_name);
 
+		// Trim the white space round the image
+		$trim = Image::make($folder.'/'.$new_name);
+		$trim->trim('top-left', null, 40);
+		$trim->save($folder.'/'.$new_name);
+		
+		// Find the Product
 		$album = Product::findOrFail($album_id);
 		$album->img = $new_name;
 		$album->save();
 
+		// Move image from user company to product folder
+			$background = $user->backgrounds()->first();
+			$user_id = public_path('uploads/company/'. $user->id);
+			$path = public_path('uploads/company/'.$user->id.'/' . $album_id . '/');
+			$img = Image::make($user_id. '/' . $background->file);
+			$img->save($path . 'img001.png');
+		// Copy the logo to the album folder
+
+		// Attach the product to Artist
+			$artist = Artist::find($album->artist_id);
+			$artist->product()->attach($album->id);
+
 		return Redirect::back();
 	}
+
+
+
+
 
 
 }

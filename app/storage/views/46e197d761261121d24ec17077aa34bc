@@ -28,7 +28,11 @@
  <p class="vjs-no-js">To view this video please enable JavaScript, and consider upgrading to a web browser that <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a></p>
 </video>
 
-
+<!-- Check if the video exists -->
+<?php
+$video = '/uploads/company/'.$user->id.'/'. $product->id .'/'.$track->id. '/' .$final.'.mp4';
+?>
+<a href="<?php echo $video; ?>">Download Video</a>
 
       </div>
       <div class="modal-footer">

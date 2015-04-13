@@ -25,6 +25,9 @@ class CreateProfilesTable extends Migration {
 			$table->string('state');
 			$table->string('zip');
 			$table->string('country');
+			$table->string('header');
+			$table->string('url');
+			$table->string('paypal');
 			$table->timestamps();
 		});
 	}

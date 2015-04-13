@@ -25,7 +25,7 @@ Country: <?php echo $profile->country; ?><br>
 	</div>
 	<div class="col-md-6">
     <?php if(Auth::user()->roles()->first()->name == 'member'): ?>
-      <?php echo $__env->make('profiles.modules.video-image.blade.php', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+      <?php echo $__env->make('profiles.modules.video-image', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
     <?php endif; ?>
 	</div>
 </div>

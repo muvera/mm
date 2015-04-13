@@ -189,6 +189,86 @@ class TracksController extends \BaseController {
 		return Redirect::back();
 	}
 
+				public function serverload()
+	{
+
+		$user = Auth::user();
+		$input = Input::get();
+
+		// Inputs from form
+		$track_id = 	Input::get('track_id');
+		$image = 		Input::file('file');
+		$product_id = 	Input::get('product_id');
+		$track_name = 	Input::get('track_name');
+
+		// If track folder does not exists make track folder
+		$folder = public_path('uploads/company/'.$user->id.'/'.$product_id.'/'.$track_id);
+		if(!file_exists($folder))
+		{
+			mkdir($folder);
+		}
+
+		
+
+		// Get the file
+		$url = file_get_contents($input['url']);
+
+		file_put_contents($folder.'/temp.mp3', $url);
+
+		// remove spaces
+		$final = preg_replace('#[ -]+#', '-', $track_name);
+		rename($folder.'/temp.mp3',$folder.'/'.$final.'.mp3');
+
+		$new_name = $final.'.mp3';
+
+
+		// Save track name to the database
+		$track = Track::findOrFail($track_id);
+		$track->name = $track_name;
+		$track->file = $new_name;
+		$track->save();
+
+		// inputs
+		$track_name = Input::get('track_name');
+		$artist_name = Input::get('artist_name');
+		$album_cover = Input::get('album_cover');
+
+		// Make the path for the scripts
+		$path = $folder.'/';
+		
+		// Path for company background and album cover
+		$path_basic_images = public_path('uploads/company/'.$user->id.'/' . $product_id . '/');
+
+		//dd($path_basic_images);
+		Audio::make($path, $track->file, $track->file);
+		// Process the Video Images
+
+		VideoImages::TrackName($track_name, $path);
+		VideoImages::ArtistName($artist_name, $path);
+		VideoImages::AlbumCover($path_basic_images, $album_cover, $path);
+		VideoImages::FlattenLayers($path, $album_cover, $track_name, $artist_name, $product_id, $user->id, $path);
+		
+		// Slide_show Name
+		$slide_show = 'slide_show_'.$final.'_.mp4';
+		$sound_file = 'preview-'.$new_name;
+		$video_name = $final;
+
+		//MakeVideo::SlideShow($path_basic_images, $slide_show);
+		//MakeVideo::MergeSound($path, $slide_show, $sound_file, $video_name);
+		//slide show
+		
+		// yes | ffmpeg -framerate 1/10 -i img%03d.png slide_show.mp4 &
+		// avconv -i slide_show.mp4 -i preview-La-Cochicuina.mp3 -c:a copy finish.mp4
+		shell_exec('yes | ffmpeg -framerate 1/10 -i '.$path. 'img%03d.png '.$path.$slide_show);
+		
+		//shell_exec('avconv -i uploads/out.mp4 -i uploads/chalino.mp3 -c:a copy uploads/finish.mp4');
+		// avconv -i slide_show.mp4 -i preview-La-Cochicuina.mp3 -c:a copy finish.mp4
+		shell_exec('yes | ffmpeg -i '.$path.$slide_show.' -i '.$path.$sound_file.' -c:a copy '.$path.$video_name.'.mp4');
+
+		return Redirect::back();
+
+	}
+
 
 
 }

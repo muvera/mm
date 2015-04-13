@@ -30,5 +30,7 @@
 	@endif
 </div>
 @endforeach
-
+@if(Session::get('username'))
+<a href="/{{Session::get('username')}}" class="btn btn-block btn-default">Regresa a {{Session::get('username')}} </a>
+@endif
 @stop

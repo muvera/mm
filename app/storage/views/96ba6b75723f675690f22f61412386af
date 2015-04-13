@@ -35,5 +35,8 @@
   </div>
 </div>
 
+<?php if(Session::get('username')): ?>
+<a href="/<?php echo Session::get('username'); ?>" class="btn btn-block btn-default">Regresa a <?php echo Session::get('username'); ?> </a>
+<?php endif; ?>
 <?php $__env->stopSection(); ?>
 <?php echo $__env->make('layouts.master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

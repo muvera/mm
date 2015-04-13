@@ -16,6 +16,7 @@ class CreateGenresTable extends Migration {
 		{
 			$table->increments('id');
 			$table->string('name');
+			$table->text('img');
 			$table->string('description');
 			$table->timestamps();
 		});

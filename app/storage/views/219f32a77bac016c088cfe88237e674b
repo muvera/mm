@@ -1,3 +1,4 @@
+<!-- -->
 <div class="row">
 	<div class="col-md-3">
 		<h3><?php echo $product->name; ?></h3>
@@ -39,6 +40,7 @@
             <!-- View Video Icon -->
 
   <?php echo $__env->make('include.form.file.create', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+  <?php echo $__env->make('include.form.server.create', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
 
   <?php echo $__env->make('include.modals.video', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
           </td>

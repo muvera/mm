@@ -25,16 +25,11 @@
 <body>
 
 <div class="container">
-	@if(Auth::user())
-      @if(Auth::user()->roles()->first()->name == 'member')
-	     @include('layouts.nav')
-      @endif
-	@endif
-
+@include('layouts.header')
 @yield('content')
 <hr>
 @include('layouts.footer')
-
+<hr>
 </div>
 <!-- JavaScript And BootStrap -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
